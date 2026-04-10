@@ -1,39 +1,109 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Epione
 
-## Getting Started
+A modern **Next.js + React** web app that brings together a *Feed*, *Events*, *Resources*, *Messaging*, and a personal *Journal* experience—wrapped in a clean UI built with Tailwind.
 
-First, run the development server:
+> This repository contains the frontend for the Epione experience. Some parts of the app run in **demo / mock mode** when a backend is not connected.
+
+---
+
+## What you can do here
+
+- **Feed** (`/home`) – posts, announcements, and polls in one scrollable stream
+- **Events** (`/events`) – browse upcoming events and create/edit them
+- **Resources** (`/resources`) – explore curated resource buckets
+- **Journal** (`/journal`) – write entries, browse by month, and reflect
+- **Messaging** (`/messaging`) – real-time chat foundations (WebSocket service + Redux state)
+- **Auth pages** (`/login`, `/signup`) – login UI + callback handler
+
+---
+
+## Tech stack
+
+- **Next.js** (Pages Router)
+- **React + TypeScript**
+- **Redux Toolkit** + **redux-persist** (app state)
+- **Tailwind CSS** (styling)
+- **Framer Motion** (background/hover animations)
+- **Axios** (API requests)
+
+---
+
+## Project structure (quick map)
+
+- `src/pages/` – Next.js routes (Feed, Events, Resources, Journal, Auth, APIs)
+- `src/components/` – reusable UI components (Header, forms, feed cards, etc.)
+- `src/sections/` – larger feature sections (ex: Events create/edit flows)
+- `src/slices/` – Redux slices (`userSlice`, `feedSlice`, `messagingSlice`, `configSlice`)
+- `src/config/` – axios config, routes, cookies, constants
+
+---
+
+## Run locally
+
+### 1) Install dependencies
+
+```bash
+npm install
+```
+
+### 2) Start the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open: http://localhost:3000
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Environment variables
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Create a `.env.local` file (optional for demo mode). Common keys used:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `NEXT_PUBLIC_BACKEND_URL` – backend base URL (defaults to `http://localhost:3000/api`)
+- `NEXT_PUBLIC_COOKIE_EXPIRATION_TIME` – cookie expiry in days
+- `NEXT_PUBLIC_SOCKET_URL` – websocket URL (if using messaging)
+- `NEXT_PUBLIC_GCP_BUCKET` – bucket used for image/resource URLs
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Notes (demo mode)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Some pages include mock data so you can see UI without a backend:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- The Feed page (`src/pages/home/index.tsx`) contains demo feed items.
+- Events (`src/pages/events/index.tsx`, `src/pages/events/[id].tsx`) include mock events.
+- Journal has demo entries & an example API route (`src/pages/api/journal.ts`).
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## UI details you might notice
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# webproj2
+- The login background grid animation is powered by **Framer Motion** in:
+  - `src/components/common/Background/index.tsx`
+
+---
+
+## Scripts
+
+- `npm run dev` – start development server
+- `npm run build` – production build
+- `npm run start` – run production server
+- `npm run lint` – lint
+
+---
+
+## Contributing
+
+If you're working on this as a team project:
+
+1. Create a feature branch
+2. Keep changes small and focused
+3. Prefer shared components in `src/components/`
+4. Add/adjust types in `src/types/` when introducing new data
+
+---
+
+## License
+
+Add a license if you plan to distribute this project.

@@ -1,4 +1,4 @@
-# Epione
+# A mental health website
 
 A modern **Next.js + React** web app that brings together a *Feed*, *Events*, *Resources*, *Messaging*, and a personal *Journal* experience—wrapped in a clean UI built with Tailwind.
 
